@@ -18,7 +18,7 @@ import { mapActions } from 'pinia'
 import Contact from '../models/Contact'
 import { useContactsStore } from '../stores/Contacts'
 import ContentContainer from '../components/ContentContainer.vue'
-import router from '../router'
+import router from './router'
     export default {
     name: "ContactView",
     data() {
