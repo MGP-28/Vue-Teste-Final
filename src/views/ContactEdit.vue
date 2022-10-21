@@ -35,11 +35,12 @@ import router from '../router';
         ...mapActions(editedContactStore, ['saveContact', 'startEditing']),
         save(){
             if(!this.editedContact.name) { alert("Nome é obrigatório"); return }
-            this.saveContact()
-            router.push('/contact/' + this.editedContact.id)
+            const id = this.saveContact()
+            router.push('/contact/' + id)
         },
         cancel(){
-
+            if(this.editedContact.id) router.push('/contact/' + this.editedContact.id)
+            else router.push('/')
         }
     },
     created() {
