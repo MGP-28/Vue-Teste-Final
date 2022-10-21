@@ -47,7 +47,8 @@ import router from '../router'
             router.push(url)
         },
         deleteContact(){
-            this.removeContact(contact)
+            this.removeContact(this.contact)
+            router.push('/')
         }
     },
     created() {

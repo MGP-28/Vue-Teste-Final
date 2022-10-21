@@ -32,15 +32,9 @@ export const useContactsStore = defineStore('useContactsStore', {
             return id
         },
         removeContact(contact){
-            try{
-                const idx = this.getContactIndexFromId(contact.id)
-                this.contacts.splice(idx, 1)
-                this.saveToLocalStorage()
-                return true
-            }
-            catch{
-                return false
-            }
+            const idx = this.getContactIndexFromId(contact.id)
+            this.contacts.splice(idx, 1)
+            this.saveToLocalStorage()
         },
         updateContact(contact){
             const idx = this.getContactIndexFromId(contact.id)

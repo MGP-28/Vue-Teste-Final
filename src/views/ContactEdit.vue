@@ -34,7 +34,7 @@ import router from '../router';
         ...mapActions(useContactsStore, ['getContactById']),
         ...mapActions(editedContactStore, ['saveContact', 'startEditing']),
         save(){
-            if(!this.editedContact.name) { alert("Nome é obrigatório"); return }
+            if(!this.editedContact.name) { alert("Nome é obrigatório"); return; }
             const id = this.saveContact()
             router.push('/contact/' + id)
         },
