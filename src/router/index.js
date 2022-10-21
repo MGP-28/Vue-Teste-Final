@@ -2,19 +2,19 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
   { 
-    name: 'tasks', 
+    name: 'contacts', 
     path: '/', 
-    component: () => import('./../views/Tasks.vue') 
+    component: () => import('./../views/Contacts.vue') 
   },
   { 
-    name: 'task', 
-    path: '/task/:id', 
-    component: () => import('./../views/Task.vue') 
+    name: 'contact', 
+    path: '/contact/:id', 
+    component: () => import('./../views/Contact.vue') 
   },
   { 
-    name: 'taskEdit', 
-    path: '/task/edit/:id', 
-    component: () => import('./../views/TaskEdit.vue') 
+    name: 'contactEdit', 
+    path: '/contact/edit/:id', 
+    component: () => import('./../views/ContactEdit.vue') 
   },
   {
     name: 'notFound',
