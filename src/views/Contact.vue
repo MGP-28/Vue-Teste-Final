@@ -1,42 +1,59 @@
 <template>
     <div class="w-full content-container">
-        <div class="w-full flex-auto justify-end">
-            <button class="btn btn-primary border" @click="submitEditedTask">Editar</button>
-            <button class="btn btn-danger border" @click="deleteTask">Eliminar</button>
+        <div class="w-full flex justify-end gap-2">
+            <button class="btn btn-primary border w-24" @click="editContact">Editar</button>
+            <button class="btn btn-danger border w-24" @click="deleteContact">Eliminar</button>
         </div>
         <ContentContainer>
-            <span class="text-left m-2">{{task.description}}</span>
-            <span class="text-left m-2" :class="taskIsCompletedCSS">{{taskIsCompletedText}}</span>
-            <span class="text-left m-2">{{task.createdAt.toLocaleString()}}</span>
+            <span class="text-left m-2">{{contact.name}}</span>
+            <span class="text-left m-2" :class="noDataCssClass('cellphone')">{{cellphoneText}}</span>
+            <span class="text-left m-2" :class="noDataCssClass('email')">{{emailText}}</span>
+            <span class="text-left m-2" :class="noDataCssClass('address')">{{addressText}}</span>
         </ContentContainer>
     </div>
 </template>
 
 <script>
 import { mapActions } from 'pinia'
-import Task from '../models/Task'
-import { tasksStore } from '../stores/Tasks'
+import Contact from '../models/Contact'
+import { useContactsStore } from '../stores/Contacts'
 import ContentContainer from '../components/ContentContainer.vue'
+import router from '../router'
     export default {
-    name: "TaskView",
+    name: "ContactView",
     data() {
         return {
-            task: null
+            contact: null
         };
     },
-    computed: {
-        taskIsCompletedText() {
-            return this.task.isCompleted ? "Completa" : "Por concluir";
+    computed:{
+        cellphoneText(){
+            return (this.contact.cellphone) ? this.contact.cellphone : 'Sem contacto telefónico'
         },
-        taskIsCompletedCSS() {
-            return this.task.isCompleted ? "text-blue-500" : "text-red-500";
+        emailText(){
+            return (this.contact.email) ? this.contact.email : 'Sem email'
+        },
+        addressText(){
+            return (this.contact.address) ? this.contact.address : 'Sem morada'
         }
     },
     methods: {
-        ...mapActions(tasksStore, ["getSelectedTask"])
+        ...mapActions(useContactsStore, ["getSelectedContact", "selectContact"]),
+        noDataCssClass(key){
+            return (this.contact[key]) ? '' : 'text-gray-500'
+        },
+        editContact(){
+            this.selectContact(this.contact.id)
+
+            const url = '/contact/edit/' + this.contact.id
+            router.push(url)
+        },
+        deleteContact(){
+            //
+        }
     },
     created() {
-        this.task = new Task(this.getSelectedTask());
+        this.contact = new Contact( this.getSelectedContact() )
     },
     components: { ContentContainer }
 }
