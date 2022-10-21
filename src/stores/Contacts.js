@@ -31,12 +31,6 @@ export const useContactsStore = defineStore('useContactsStore', {
         //
     },
     actions: {
-        getCompleted() {
-            return this.contacts.filter(contact => contact.isContactCompleted())
-        },
-        getIncompleted() {
-            return this.contacts.filter(contact => !contact.isContactCompleted())
-        },
         getSelectedContact(){
             return this.contacts[this.getContactIndexFromId(this.selectedId)]
         },
