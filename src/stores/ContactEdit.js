@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import Contact from '../models/Contact'
-import { defineStore } from 'pinia'
 import { useContactsStore } from './Contacts'
 
 export const editedContactStore = defineStore('editedContactStore', {
@@ -8,9 +7,7 @@ export const editedContactStore = defineStore('editedContactStore', {
         editedContact: new Contact()
     }),
     getters: {
-        getSelectedContactData() {
-            return this.selectedContact
-        }
+        //
     },
     actions: {
         startEditing(contact){
