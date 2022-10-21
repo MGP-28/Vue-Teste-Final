@@ -1,7 +1,7 @@
 <template>
     <div class="content-container">
         <div class="toolbar">
-            <button class="btn btn-primary border" @click="createTask">Adicionar</button>
+            <button class="btn btn-primary border" @click="createContact">Adicionar</button>
         </div>
         <ContentContainer>
             <ContactCard v-for="(contact, idx) in contacts" :contact="contact" :key="idx" />
@@ -10,10 +10,11 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'pinia'
+import { mapState } from 'pinia'
 import { useContactsStore } from '../stores/Contacts'
 import ContentContainer from '../components/ContentContainer.vue';
 import ContactCard from '../components/ContactCard.vue';
+import router from '../router'
     export default {
     name: "ContactsView",
     computed:{
@@ -21,7 +22,7 @@ import ContactCard from '../components/ContactCard.vue';
     },
     methods: {
         createContact(){
-            //
+            router.push('/new')
         },
     },
     components: { ContentContainer, ContactCard }
