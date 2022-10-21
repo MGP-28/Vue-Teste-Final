@@ -31,23 +31,20 @@ export const useContactsStore = defineStore('useContactsStore', {
         //
     },
     actions: {
-        getSelectedContact(){
-            return this.contacts[this.getContactIndexFromId(this.selectedId)]
+        getContactById(id){
+            return this.contacts[this.getContactIndexFromId(id)]
         },
         getContactIndexFromId(id) {
-            return this.contacts.findIndex(contact => contact.id === id)
-        },
-        selectContact(id) {
-            if (this.getContactIndexFromId(id) != -1) this.selectedId = id
-        },
-        resetSelectedContact(){
-            this.selected = -1
+            return this.contacts.findIndex( (contact) => contact.id == id )
         },
         addContact(contact){
             try{
                 let newContact = new Contact(contact)
-                newContact.id = getNextId()
-                contact.push(newContact)
+                if( contact.id ) updateContact(contact)
+                else {
+                    newContact.id = getNextId()
+                    contact.push(newContact)
+                }
                 return true
             }
             catch{

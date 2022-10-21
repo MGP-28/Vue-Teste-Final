@@ -38,7 +38,7 @@ import router from '../router'
         }
     },
     methods: {
-        ...mapActions(useContactsStore, ["getSelectedContact", "selectContact"]),
+        ...mapActions(useContactsStore, ["getContactById", "selectContact"]),
         noDataCssClass(key){
             return (this.contact[key]) ? '' : 'text-gray-500'
         },
@@ -53,7 +53,7 @@ import router from '../router'
         }
     },
     created() {
-        this.contact = new Contact( this.getSelectedContact() )
+        this.contact = new Contact( this.getContactById(this.$route.params.id) )
     },
     components: { ContentContainer }
 }
