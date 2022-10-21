@@ -1,6 +1,5 @@
 export default class Contact{
     constructor(contact = null){
-        console.log(contact)
         if(contact == null) return
         this.id = contact.id
         this.name = contact.name
