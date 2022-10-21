@@ -7,20 +7,25 @@ const routes = [
     component: () => import('./../views/Contacts.vue') 
   },
   { 
+    name: 'contactEdit', 
+    path: '/contact/:id/edit', 
+    component: () => import('./../views/ContactEdit.vue') 
+  },
+  { 
     name: 'contact', 
     path: '/contact/:id', 
     component: () => import('./../views/Contact.vue') 
   },
   { 
-    name: 'contactEdit', 
-    path: '/contact/edit/:id', 
+    name: 'contactNew', 
+    path: '/new', 
     component: () => import('./../views/ContactEdit.vue') 
   },
   {
     name: 'notFound',
     path: "/:pathMatch(.*)", 
     component: () => import('./../views/notFound.vue') 
-  }
+  },
 
   // Routes Examples
 
