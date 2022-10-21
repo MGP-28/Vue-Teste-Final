@@ -18,9 +18,9 @@ export const useContactsStore = defineStore('useContactsStore', {
         addContact(contact){
             try{
                 let newContact = new Contact(contact)
-                if( contact.id ) updateContact(contact)
+                if( contact.id ) this.updateContact(contact)
                 else {
-                    newContact.id = getNextId()
+                    newContact.id = this.getNextId()
                     contact.push(newContact)
                 }
                 this.saveToLocalStorage()
@@ -32,7 +32,7 @@ export const useContactsStore = defineStore('useContactsStore', {
         },
         removeContact(contact){
             try{
-                const idx = getContactIndexFromId(contact.id)
+                const idx = this.getContactIndexFromId(contact.id)
                 this.contacts.splice(idx, 1)
                 this.saveToLocalStorage()
                 return true
@@ -42,15 +42,10 @@ export const useContactsStore = defineStore('useContactsStore', {
             }
         },
         updateContact(contact){
-            try{
-                const idx = getContactIndexFromId(contact.id)
-                this.contacts[idx].updateContact(contact)
-                this.saveToLocalStorage()
-                return true
-            }
-            catch{
-                return false
-            }
+            const idx = this.getContactIndexFromId(contact.id)
+            this.contacts[idx] = new Contact(contact)
+            this.saveToLocalStorage()
+            return true
         },
         getNextId(){
             if(!this.contacts) return 0

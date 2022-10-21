@@ -16,7 +16,6 @@ export const editedContactStore = defineStore('editedContactStore', {
         saveContact(){
             try{
                 const contactsStoreRef = useContactsStore()
-
                 return contactsStoreRef.updateContact(this.editedContact)
             }
             catch{
