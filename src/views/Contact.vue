@@ -38,18 +38,16 @@ import router from '../router'
         }
     },
     methods: {
-        ...mapActions(useContactsStore, ["getContactById", "selectContact"]),
+        ...mapActions(useContactsStore, ['getContactById', 'selectContact', 'removeContact']),
         noDataCssClass(key){
             return (this.contact[key]) ? '' : 'text-gray-500'
         },
         editContact(){
-            this.selectContact(this.contact.id)
-
-            const url = '/contact/edit/' + this.contact.id
+            const url = '/contact/' + this.contact.id + '/edit'
             router.push(url)
         },
         deleteContact(){
-            //
+            this.removeContact(contact)
         }
     },
     created() {
