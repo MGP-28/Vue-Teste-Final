@@ -20,7 +20,7 @@ import ContactCard from '../components/ContactCard.vue';
         ...mapState(useContactsStore, ['contacts'])
     },
     methods: {
-        createTask(){
+        createContact(){
             //
         },
     },
