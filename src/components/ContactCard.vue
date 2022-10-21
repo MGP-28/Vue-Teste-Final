@@ -7,8 +7,6 @@
 
 <script>
 import router from '../router';
-import { mapActions } from 'pinia'
-import { useContactsStore } from '../stores/Contacts';
 
     export default {
         name: "ContactCard",
@@ -16,10 +14,7 @@ import { useContactsStore } from '../stores/Contacts';
             'contact'
         ],
         methods: {
-            ...mapActions(useContactsStore, ['selectContact']),
-            showDetails(){
-                this.selectContact(this.contact.id)
-                
+            showDetails(){              
                 const url = '/contact/' + this.contact.id
                 router.push(url)
             }
