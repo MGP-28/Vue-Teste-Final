@@ -16,12 +16,11 @@ export const useContactsStore = defineStore('useContactsStore', {
             return this.contacts.findIndex( (contact) => contact.id == id )
         },
         addContact(contact){
-            console.log('here')
             let newContact = new Contact(contact)
             let id = null
-            if( contact.id ) {
-                this.updateContact(contact)
-                id = contact.id
+            if( newContact.id >= 0 ) {
+                this.updateContact(newContact)
+                id = newContact.id
             }
             else {
                 newContact.id = this.getNextId()
@@ -39,11 +38,12 @@ export const useContactsStore = defineStore('useContactsStore', {
         updateContact(contact){
             const idx = this.getContactIndexFromId(contact.id)
             this.contacts[idx] = new Contact(contact)
+            console.log(this.contacts)
             this.saveToLocalStorage()
             return true
         },
         getNextId(){
-            if(!this.contacts) return 0
+            if(this.contacts.length == 0) return 0
             return (this.contacts[this.contacts.length-1].id + 1)
         },
         loadFromLocalStorage(){
